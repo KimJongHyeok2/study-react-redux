@@ -1,16 +1,20 @@
 import React, { Component } from 'react' ;
+import { connect } from 'react-redux';
 
 class Counter extends Component {
   render() {
-    return(
-      <div>
-        <h1>myCounter</h1>
-        <button onClick={this.props.click}>+</button>
-        <button>-</button>
-        <h3>{this.props.store.getState().value}</h3>
-      </div>
+    return (
+      <h1>VALUE : {this.props.value}</h1>
     );
   }
 }
 
-export default Counter ;
+let mapStateToProps = (state) => {
+  return {
+    value: state.counter.value
+  };
+}
+
+Counter = connect(mapStateToProps)(Counter);
+
+export default Counter;
